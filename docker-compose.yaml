@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:13-alpine # Use "mcr.microsoft.com/mssql/server:2019-latest" for MSSQL
+    restart: always
+    environment:
+      POSTGRES_USER: db_user # Use "SA_PASSWORD" for MSSQL
+      POSTGRES_PASSWORD: db_password # Use your desired password for MSSQL
+      POSTGRES_DB: db_name # Use your desired database name for MSSQL
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d # Use "./init:/var/opt/mssql/init" for MSSQL
+    ports:
+      - "5432:5432" # Use "1433:1433" for MSSQL
