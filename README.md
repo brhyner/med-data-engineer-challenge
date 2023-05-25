@@ -9,13 +9,14 @@ To complete this challenge, follow the steps below:
 1. Fork this repository
 2. Clone the forked repository to your local machine
 3. Create a virtual environment and activate it (use `pipenv` or `conda`)
-4. Write Python code to extract, transform, and load the data into a PostgreSQL or Microsoft SQL Server database running in a Docker container
-   - The goal is to create a database schema that can be used to analyze the data
+4. Write Python code to extract, transform, and load the data into a PostgreSQL or Microsoft SQL Server database running in a Docker container. Choose the database you are more comfortable with.
+   - The goal is to create a database schema that Data Analysts can use to analyze the data
    - You can use any Python packages you want to complete this task
 5. Optional: Write tests for your code to ensure it's working correctly
-6. Add the used packages to the `requirements.txt` or `environment.yml` file
-7. Commit your changes and push them to your forked repository
-8. Create a pull request into the main branch
+6. Analyze the number of cases per patient, the average age, and the most common ICPC codes
+7. Add the used packages to the `requirements.txt` or `environment.yml` file
+8. Commit your changes and push them to your forked repository
+9. Create a pull request into the main branch
 
 ### Datasets
 
@@ -50,6 +51,7 @@ The file has the following columns:
  - `case_closed`: Whether the case is closed or not
  - `case_closed_datetime`: The datetime the case was closed
  - `case_closed_reason`: The reason the case was closed
+ - `icpc_codes`: The ICPC codes associated with the case, whitespace separated
  - `updated_at`: The datetime the case was last updated
 
 
