@@ -25,7 +25,7 @@ The dataset you'll be working with contains information about a fictional digita
 
 The file has the following columns:
 
-- `patient_id`: The unique ID of the order
+- `patient_id`: The unique ID of the patient
 - `patient_name`: The name of the patient
 - `patient_email`: The email of the patient
 - `patient_phone`: The phone number of the patient
