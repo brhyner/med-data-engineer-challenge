@@ -54,6 +54,7 @@ with open('../data/cases.ndjson', 'r') as ndjson_file:
         # Insert data into PostgreSQL
         #insert_query = "Select top(10) From "
         insert_query ="""
+        TRUNCATE TABLE NDJSON_CASES;
         INSERT INTO NDJSON_CASES (
         case_id,             
         case_type,           
