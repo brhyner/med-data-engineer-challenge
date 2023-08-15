@@ -42,6 +42,8 @@ CREATE TABLE IF NOT EXISTS sat_address (
 # Execute query
 cursor.execute(create_table_query)
 connection.commit()
+
+
 raw_dv_query = """
 INSERT INTO hub_patients
 SELECT 

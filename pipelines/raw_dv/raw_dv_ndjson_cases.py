@@ -26,27 +26,25 @@ CREATE TABLE IF NOT EXISTS sat_cases (
     sys_load_id NUMERIC(20),
     sys_loaded_from VARCHAR,
     case_id VARCHAR REFERENCES hub_cases(case_id),           
-    case_type VARCHAR,        
-    patient_id VARCHAR,          
+    case_type VARCHAR,             
     case_datetime VARCHAR,       
     case_closed VARCHAR,         
     case_closed_datetime VARCHAR,
-    case_closed_reason VARCHAR,  
-    icpc_codes VARCHAR,          
+    case_closed_reason VARCHAR,      
     updated_at VARCHAR
 	   
 );
 CREATE TABLE IF NOT EXISTS link_patient_case (
 sys_load_id NUMERIC(20),
 sys_loaded_from VARCHAR,
-case_id VARCHAR REFERENCES hub_cases(case_id),
-patient_id VARCHAR REFERENCES hub_patients(patient_id)   
+patient_id VARCHAR REFERENCES hub_patients(patient_id),
+case_id VARCHAR REFERENCES hub_cases(case_id)
 );
 CREATE TABLE IF NOT EXISTS link_case_icpc (
 sys_load_id NUMERIC(20),
 sys_loaded_from VARCHAR,
 case_id VARCHAR REFERENCES hub_cases(case_id),
-patient_id VARCHAR
+icpc_codes VARCHAR
 )
 
 '''
@@ -91,8 +89,8 @@ INSERT INTO link_patient_case
 SELECT 
     sys_load_id
     ,sys_loaded_from
-    ,json_string->>'case_id' as case_id                  
     ,json_string->>'patient_id' as patient_id
+    ,json_string->>'case_id' as case_id                  
 FROM psa_cases src
 WHERE 1=1
 AND src.sys_load_id > COALESCE((SELECT MAX(trg.sys_load_id) FROM link_patient_case trg),0)
