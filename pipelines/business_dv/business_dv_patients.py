@@ -39,26 +39,26 @@ connection.commit()
 
 business_dv_query = """
 INSERT INTO business_dv_patients
-SELECT distinct
-    sys_hash
-    ,sys_load_id
-    ,sys_loaded_from
-    ,patient_id
-    ,patient_name
-    ,patient_email 
-    ,patient_phone
-    ,patient_address
-    ,patient_city
-    ,patient_state
-    ,patient_zip
-    ,patient_country
-    ,CASE
-        WHEN patient_date_of_birth != ''
-            THEN patient_date_of_birth::date
-        ELSE NULL
-        END AS patient_date_of_birth
-    ,updated_at::timestamp
-FROM sat_address
+    SELECT DISTINCT
+        sys_hash
+        ,sys_load_id
+        ,sys_loaded_from
+        ,patient_id
+        ,patient_name
+        ,patient_email 
+        ,patient_phone
+        ,patient_address
+        ,patient_city
+        ,patient_state
+        ,patient_zip
+        ,patient_country
+        ,CASE
+            WHEN patient_date_of_birth != ''
+                THEN patient_date_of_birth::date
+            ELSE NULL
+            END AS patient_date_of_birth
+        ,updated_at::timestamp
+    FROM sat_address
 """
 
 # Execute query

@@ -33,19 +33,19 @@ connection.commit()
 
 insert_table_query = """
 INSERT INTO business_dv_cases
-SELECT distinct
-    sys_hash
-    ,sys_load_id
-    ,sys_loaded_from
-    ,case_id
-    ,case_type        
-    ,to_timestamp((case_datetime::numeric/1000.0)::numeric) as case_datetime
-    ,case_closed::boolean     
-    ,to_timestamp((case_closed_datetime::numeric/1000.0)::numeric) as case_closed_datetime
-    ,case_closed_reason   
-    ,to_timestamp((updated_at::numeric/1000.0)::numeric) as updated_at
-FROM sat_cases
-WHERE sys_load_id = (SELECT MAX(sys_load_id) FROM sat_cases src)
+    SELECT DISTINCT
+        sys_hash
+        ,sys_load_id
+        ,sys_loaded_from
+        ,case_id
+        ,case_type        
+        ,to_timestamp((case_datetime::numeric/1000.0)::numeric) as case_datetime
+        ,case_closed::boolean     
+        ,to_timestamp((case_closed_datetime::numeric/1000.0)::numeric) as case_closed_datetime
+        ,case_closed_reason   
+        ,to_timestamp((updated_at::numeric/1000.0)::numeric) as updated_at
+    FROM sat_cases
+    WHERE sys_load_id = (SELECT MAX(sys_load_id) FROM sat_cases src)
 """
 cursor.execute(insert_table_query)
 connection.commit()

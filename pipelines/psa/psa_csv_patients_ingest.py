@@ -20,7 +20,8 @@ db_params = {
 # Connect to the PostgreSQL database
 connection = psycopg2.connect(**db_params)
 cursor = connection.cursor()
-# Create the table
+
+# DDL
 create_table_query = '''
 CREATE TABLE IF NOT EXISTS CSV_PATIENTS (
     patient_id VARCHAR PRIMARY KEY,
@@ -42,7 +43,7 @@ CREATE TABLE IF NOT EXISTS PSA_PATIENTS (
     json_string JSONB
 );
 '''
-file_path = '../../data/patients.csv'
+file_path = 'data/patients.csv'
 cursor.execute(create_table_query)
 connection.commit()
 
@@ -52,14 +53,14 @@ with open(file_path, 'r') as csv_file:
     
     # Skip header
     next(csv_reader)  
+
     # Get current timestamp
     timestamp = time.time()
     date_time = datetime.fromtimestamp(timestamp)
     str_date_time = date_time.strftime("%Y%m%d%H%M%S")
 
     for row in csv_reader:
-        # Apply transformation logic here if needed
-        #transformed_data = row[0].upper()  # Example transformation
+
         raw_data = {
         'patient_id': row[0],
         'patient_name': row[1],
@@ -73,17 +74,7 @@ with open(file_path, 'r') as csv_file:
         'patient_date_of_birth': row[9],
         'updated_at': row[10]
         }
-        # Insert data into PostgreSQL
-        #insert_query = "Select top(10) From "
-        
-        # INSERT INTO CSV_PATIENTS (
-        # patient_id, patient_name, patient_email, patient_phone,
-        # patient_address, patient_city, patient_state, patient_zip,
-        # patient_country, patient_date_of_birth, updated_at
-        # ) 
-        # VALUES (
-        # %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
-        # );
+
         insert_query ="""
         INSERT INTO PSA_PATIENTS(
         sys_hash,

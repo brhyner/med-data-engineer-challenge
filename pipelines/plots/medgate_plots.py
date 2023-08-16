@@ -42,7 +42,6 @@ plt.xticks(rotation=45)
 plt.grid(True)
 plt.show()
 
-
 # Plot the most common ICPC codes
 icpc_codes = [row[0] for row in icpc_codes_result]
 icpc_code_counts = [row[1] for row in icpc_codes_result]
