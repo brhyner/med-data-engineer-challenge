@@ -1,0 +1,30 @@
+version: 2
+
+seeds:
+  - name: cases  
+    config:
+      column_types:
+        case_id: text # not unique anymore, because I exploded the table based on icpc_codes
+        case_type: integer
+        patient_id: text
+        case_datetime: bigint 
+        case_closed: boolean
+        case_closed_datetime: bigint  
+        case_closed_reason: text
+        icpc_codes: text
+        updated_at: bigint  
+
+  - name: patients  
+    config:
+      column_types:
+        patient_id: text  
+        patient_name: text
+        patient_email: text
+        patient_phone: text
+        patient_address: text
+        patient_city: text
+        patient_state: text
+        patient_zip: varchar(5)  
+        patient_country: text
+        patient_date_of_birth: date  
+        updated_at: timestamp  
